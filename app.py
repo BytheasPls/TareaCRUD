@@ -12,11 +12,19 @@ mysql = MySQL(app)
 
 @app.route('/')
 def index():    
+    nombre = request.args.get('nombre', '').strip()
     cur = mysql.connection.cursor()
-    cur.execute('SELECT * FROM usuarios')
+    if nombre != '':
+        palabra = f"%{nombre}%"
+        cur.execute(
+            'SELECT * FROM usuarios WHERE LOWER(nombre) LIKE LOWER(%s) ORDER BY nombre ASC',
+            (palabra,)
+        )
+    else:
+        cur.execute('SELECT * FROM usuarios ORDER BY nombre ASC')
     data = cur.fetchall()
     cur.close()
-    return render_template('index.html', usuarios = data)
+    return render_template('index.html', usuarios = data, nombre=nombre)
 
 
 @app.route('/agregar', methods=['POST'])
@@ -26,7 +34,6 @@ def agregar_usuario():
         contrasena = request.form['contrasena']
         nombre = request.form['nombre']
         apellido = request.form['apellido']
-         
         cur = mysql.connection.cursor()
         cur.execute('INSERT usuarios(gmail, contrasena, nombre, apellido) VALUES(%s, %s, %s, %s)', (gmail, contrasena, nombre, apellido))
         mysql.connection.commit()
@@ -62,8 +69,6 @@ def editar_usuario(id):
         data = cur.fetchone()
         cur.close()
         return render_template('editar.html', usuario = data)
-    
-
 
 if __name__ == '__main__':
     app.run(debug=True)

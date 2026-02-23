@@ -1,46 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>CRUD - Editar Usuario</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
 </head>
+
 <body>
     <main class="container mt-5">
-        <h1 class="mb-4 text-center">
-           EDITAR USUARIOS
+        <h1 class="mb-4 text-center" style="font-weight: bold; font-size: larger; padding-left: 2rem;">
+            EDITAR USUARIOS
         </h1>
 
-        <form action="/editar/{{ usuario[0] }}" method="POST" class="shadow p-4 rounded bg-light">
-            <div class="mb-3">
-                <label for="gmail" class="form-label">Gmail: </label>
-                <input type="email" class="form-control" id="gmail" name="gmail" value="{{usuario[1]}}" placeholder="Ingrese su Gmail" required>
-            </div>
-            
-            <div class="mb-3">
-                <label for="password" class="form-label">Contraseña: </label>
-                <input type="password" class="form-control" id="contrasena" name="contrasena" value="{{usuario[2]}}" placeholder="Ingrese su Contraseña" required>
+        <form action="/editar/{{ usuario[0] }}" method="POST" class="form shadow p-4 rounded is-light">
+            <div class="field">
+                <label class="label">Nombre</label>
+                <div class="control">
+                    <input class="input" type="text" id="nombre" name="nombre" value="{{usuario[3]}}" placeholder="Ingrese su nombre" required>
+                </div>
             </div>
 
-            <div class="mb-3">
-                <label for="nombre" class="form-label">Nombre: </label>
-                <input type="text" class="form-control" id="nombre" name="nombre" value="{{usuario[3]}}" placeholder="Ingrese su Nombre" required>
+            <div class="field">
+                <label class="label">Apellido</label>
+                <div class="control">
+                    <input class="input" type="text" id="apellido" name="apellido" value="{{usuario[4]}}" placeholder="Ingrese su apellido"
+                        required>
+                </div>
             </div>
 
-            <div class="mb-3">
-                <label for="apellido" class="form-label">Apellido: </label>
-                <input type="text" class="form-control" id="apellido" name="apellido" value="{{usuario[4]}}" placeholder="Ingrese su Apellido" required>
+            <div class="field">
+                <label class="label">Correo Electrónico</label>
+                <div class="control">
+                    <input class="input" type="email" id="gmail" name="gmail" value="{{usuario[1]}}" placeholder="Ejemplo: usuario@gmail.com"
+                        required>
+                </div>
             </div>
 
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary w-100">
-                    EDITAR USUARIO
-                </button>
+            <div class="field">
+                <label class="label">Contraseña</label>
+                <div class="control">
+                    <input class="input" type="password" id="contrasena" name="contrasena" value="{{usuario[2]}}"
+                        placeholder="Ingrese su Contraseña" required>
+                </div>
+            </div>
+
+            <div class="field is-grouped">
+                <div class="control">
+                    <button type="submit" class="button is-link">Editar</button>
+                </div>
+                <div class="control">
+                    <button type="button" class="button is-link is-light" onclick="window.location.href='/';">Cancelar</button>
+                </div>
             </div>
         </form>
 
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
+
 </html>
