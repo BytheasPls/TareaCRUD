@@ -1,0 +1,40 @@
+﻿@model PeliculasModel
+@{
+    ViewData["Title"] = "Guardar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        Agregar Película
+    </div>
+    <div class="card-body">
+
+        <form asp-action="Guardar" asp-controller="Mant" method="post">
+
+            <div class="mb-3">
+                <label asp-for="NombrePelicula" class="form-label">Nombre de la Película</label>
+                <input asp-for="NombrePelicula" type="text" class="form-control">
+                <span asp-validation-for="NombrePelicula" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Sinopsis" class="form-label">Sinopsis</label>
+                <textarea asp-for="Sinopsis" class="form-control" rows="3" placeholder="Agregue una breve descripcion"></textarea>
+                <span asp-validation-for="Sinopsis" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="FechaLanzamiento" class="form-label">Fecha de Lanzamiento</label>
+                <input asp-for="FechaLanzamiento" type="date" class="form-control">
+                <span asp-validation-for="FechaLanzamiento" class="text-danger"></span>
+            </div>
+
+            <hr />
+
+            <button type="submit" class="btn btn-primary">Guardar Película</button>
+            <a asp-action="Listar" class="btn btn-secondary">Regresar</a>
+
+        </form>
+    </div>
+</div>
